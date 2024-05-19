@@ -45,10 +45,6 @@ public class UploadAndDisplayView extends Main {
             long contentLength = event.getContentLength();
             String mimeType = event.getMIMEType();
 
-            System.out.println(fileName);
-            System.out.println(contentLength);
-            System.out.println(mimeType);
-
             List<ImageData> images;
             try {
                 images = imageService.findSimilarImages(fileName, mimeType, contentLength, fileData.readAllBytes());
@@ -57,7 +53,6 @@ public class UploadAndDisplayView extends Main {
             }
             imageContainer.removeAll();
             for (ImageData imageData : images) {
-                System.out.println(imageData.getId() + "/" + imageData.getFilename() + "/" + imageData.getContentType());
                 imageContainer.add(new ImageGalleryViewCard(imageData));
             }
             singleFileUpload.clearFileList();
