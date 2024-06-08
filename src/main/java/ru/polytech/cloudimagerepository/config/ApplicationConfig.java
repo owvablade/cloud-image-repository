@@ -1,5 +1,6 @@
 package ru.polytech.cloudimagerepository.config;
 
+import dev.brachtendorf.jimagehash.hashAlgorithms.AverageHash;
 import dev.brachtendorf.jimagehash.hashAlgorithms.HashingAlgorithm;
 import dev.brachtendorf.jimagehash.hashAlgorithms.PerceptiveHash;
 import org.springframework.beans.factory.annotation.Value;

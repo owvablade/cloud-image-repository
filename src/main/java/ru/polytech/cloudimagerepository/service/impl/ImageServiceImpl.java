@@ -185,13 +185,15 @@ public class ImageServiceImpl implements ImageService {
 
         if (cluster.isEmpty()) {
             Cluster targetCluster = null;
+            double minHashValue = similarityScore;
             try (MongoCursor<Document> cursor = clusterRepository.getCollection()) {
                 while (cursor.hasNext()) {
                     Document currentClusterDoc = cursor.next();
                     Hash currentClusterHash = HashMapper.toHash(currentClusterDoc);
-                    if (Double.compare(currentClusterHash.normalizedHammingDistance(hash), similarityScore) < 0) {
+                    double currentHashValue = currentClusterHash.normalizedHammingDistance(hash);
+                    if (Double.compare(currentHashValue, minHashValue) < 0) {
+                        minHashValue = currentHashValue;
                         targetCluster = ClusterMapper.toCluster(currentClusterDoc);
-                        break;
                     }
                 }
             }
