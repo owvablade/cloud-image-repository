@@ -47,7 +47,7 @@ public class ImageController {
         imageService.deleteImage(imageId);
     }
 
-    @GetMapping("/similar")
+    @PostMapping("/similar")
     public List<ImageData> findSimilarImages(@RequestParam("file") MultipartFile file) throws IOException {
         return imageService.findSimilarImages(file);
     }
