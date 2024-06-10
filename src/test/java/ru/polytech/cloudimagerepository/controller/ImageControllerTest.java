@@ -148,11 +148,12 @@ class ImageControllerTest {
         verify(imageService, times(1)).deleteImage("1");
     }
 
+    @Test
     void testDeleteImageWithWrongId() throws Exception {
         doThrow(new ImageNotFoundException("Image not found")).when(imageService).deleteImage(anyString());
 
         mockMvc.perform(delete("/images/api/1"))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isNotFound());
 
         verify(imageService, times(1)).deleteImage("1");
     }
